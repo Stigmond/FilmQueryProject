@@ -180,22 +180,28 @@ public class Film {
 //		return "Film [filmID=" + filmID + ", filmTitle=" + filmTitle + ", filmDescription=" + filmDescription
 //				+ ", filmReleaseYear=" + filmReleaseYear + ", filmLanguage=" + filmLanguage + ", filmLength="
 //				+ filmLength + ", filmRating=" + filmRating + ", filmFeatures=" + filmFeatures + "]";
-		return 	"\t* ***> " + filmTitle + " <*** *\n\n" +
-				filmReleaseYear + " \t  " + filmLength + " mins.\n" +
-				"*--------------------\n" +
-				"Starring:\n" +
-				actorsInFilm + "\n" +
-				"*--------------------\n" +
-				"Rated: " + filmRating + "\n" +
-				"*--------------------\n" +
-				filmDescription + "\n" +
-				"*--------------------\n" +
-				"Language: " + filmLanguage + "\n" +
-				"*--------------------\n" +
-				"Special Features: " + filmFeatures;
 				
+		StringBuilder sb = new StringBuilder();
+		sb.append("*------>>  ").append(filmTitle).append("  <<------*");
+		sb.append("\n\nStarring:\n\n");
+		for (Actor actor : actorsInFilm) {
+			sb.append(actor);
+			sb.append("\n");
+		}
+		sb.append("\n-----------------\n");
+		sb.append(filmReleaseYear).append("\t").append(filmLength).append(" mins.\n");
+		sb.append("-----------------\n");
+		sb.append("Rated: ").append(filmRating);
+		sb.append("\n-----------------\n");
+		sb.append(filmDescription);
+		sb.append("\n-----------------\n");
+		sb.append("Language: ").append(filmLanguage);		
+		sb.append("\n-----------------\n");
+		sb.append("Special Features: ").append(filmFeatures);
+		return sb.toString();
+		}
 				
-	}
+	
 
 
 	
