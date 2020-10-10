@@ -1,127 +1,125 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Film {
 
 	private int filmID;
-	private String title;
-	private String description;
-	private Integer year;
-	private String language;
-	private Integer length;
-	private String rating;
-	private String special_features;
-	List<Actor> actors;
-
-
+	private String filmTitle;
+	private String filmDescription;
+	private Integer filmReleaseYear;
+	private String filmLanguage;
+	private Integer filmLength;
+	private String filmRating;
+	private String filmFeatures;
+	private List<Actor> actorsInFilm;
+	
+	public Film() {
+		
+	}
+	
+	public Film(int filmID, String filmTitle, String filmDescription, Integer filmReleaseYear, String filmLanguage,
+			Integer filmLength, String filmRating, String filmFeatures, List<Actor> actorsInFilm) {
+		super();
+		this.filmID = filmID;
+		this.filmTitle = filmTitle;
+		this.filmDescription = filmDescription;
+		this.filmReleaseYear = filmReleaseYear;
+		this.filmLanguage = filmLanguage;
+		this.filmLength = filmLength;
+		this.filmRating = filmRating;
+		this.filmFeatures = filmFeatures;
+		this.actorsInFilm = new ArrayList<>(actorsInFilm);
+	}
 
 	public int getFilmID() {
 		return filmID;
 	}
 
-
 	public void setFilmID(int filmID) {
 		this.filmID = filmID;
 	}
 
-
-	public String getTitle() {
-		return title;
+	public String getFilmTitle() {
+		return filmTitle;
 	}
 
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setFilmTitle(String filmTitle) {
+		this.filmTitle = filmTitle;
 	}
 
-
-	public String getDescription() {
-		return description;
+	public String getFilmDescription() {
+		return filmDescription;
 	}
 
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setFilmDescription(String filmDescription) {
+		this.filmDescription = filmDescription;
 	}
 
-
-	public Integer getYear() {
-		return year;
+	public Integer getFilmReleaseYear() {
+		return filmReleaseYear;
 	}
 
-
-	public void setYear(Integer year) {
-		this.year = year;
+	public void setFilmReleaseYear(Integer filmReleaseYear) {
+		this.filmReleaseYear = filmReleaseYear;
 	}
 
-
-	public String getLanguage() {
-		return language;
+	public String getFilmLanguage() {
+		return filmLanguage;
 	}
 
-
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setFilmLanguage(String filmLanguage) {
+		this.filmLanguage = filmLanguage;
 	}
 
-
-	public Integer getLength() {
-		return length;
+	public Integer getFilmLength() {
+		return filmLength;
 	}
 
-
-	public void setLength(Integer length) {
-		this.length = length;
+	public void setFilmLength(Integer filmLength) {
+		this.filmLength = filmLength;
 	}
 
-
-	public String getRating() {
-		return rating;
+	public String getFilmRating() {
+		return filmRating;
 	}
 
-
-	public void setRating(String rating) {
-		this.rating = rating;
+	public void setFilmRating(String filmRating) {
+		this.filmRating = filmRating;
 	}
 
-
-	public String getSpecial_features() {
-		return special_features;
+	public String getFilmFeatures() {
+		return filmFeatures;
 	}
 
-
-	public void setSpecial_features(String special_features) {
-		this.special_features = special_features;
+	public void setFilmFeatures(String filmFeatures) {
+		this.filmFeatures = filmFeatures;
 	}
 
-
-	public List<Actor> getActors() {
-		return actors;
+	public List<Actor> getActorsInFilm() {
+		return actorsInFilm;
 	}
 
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
+	public void setActorsInFilm(List<Actor> actorsInFilm) {
+		this.actorsInFilm = actorsInFilm;
 	}
-
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((actors == null) ? 0 : actors.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((actorsInFilm == null) ? 0 : actorsInFilm.hashCode());
+		result = prime * result + ((filmDescription == null) ? 0 : filmDescription.hashCode());
+		result = prime * result + ((filmFeatures == null) ? 0 : filmFeatures.hashCode());
 		result = prime * result + filmID;
-		result = prime * result + ((language == null) ? 0 : language.hashCode());
-		result = prime * result + ((length == null) ? 0 : length.hashCode());
-		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
-		result = prime * result + ((special_features == null) ? 0 : special_features.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((year == null) ? 0 : year.hashCode());
+		result = prime * result + ((filmLanguage == null) ? 0 : filmLanguage.hashCode());
+		result = prime * result + ((filmLength == null) ? 0 : filmLength.hashCode());
+		result = prime * result + ((filmRating == null) ? 0 : filmRating.hashCode());
+		result = prime * result + ((filmReleaseYear == null) ? 0 : filmReleaseYear.hashCode());
+		result = prime * result + ((filmTitle == null) ? 0 : filmTitle.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -132,55 +130,71 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		if (actors == null) {
-			if (other.actors != null)
+		if (actorsInFilm == null) {
+			if (other.actorsInFilm != null)
 				return false;
-		} else if (!actors.equals(other.actors))
+		} else if (!actorsInFilm.equals(other.actorsInFilm))
 			return false;
-		if (description == null) {
-			if (other.description != null)
+		if (filmDescription == null) {
+			if (other.filmDescription != null)
 				return false;
-		} else if (!description.equals(other.description))
+		} else if (!filmDescription.equals(other.filmDescription))
+			return false;
+		if (filmFeatures == null) {
+			if (other.filmFeatures != null)
+				return false;
+		} else if (!filmFeatures.equals(other.filmFeatures))
 			return false;
 		if (filmID != other.filmID)
 			return false;
-		if (language == null) {
-			if (other.language != null)
+		if (filmLanguage == null) {
+			if (other.filmLanguage != null)
 				return false;
-		} else if (!language.equals(other.language))
+		} else if (!filmLanguage.equals(other.filmLanguage))
 			return false;
-		if (length == null) {
-			if (other.length != null)
+		if (filmLength == null) {
+			if (other.filmLength != null)
 				return false;
-		} else if (!length.equals(other.length))
+		} else if (!filmLength.equals(other.filmLength))
 			return false;
-		if (rating == null) {
-			if (other.rating != null)
+		if (filmRating == null) {
+			if (other.filmRating != null)
 				return false;
-		} else if (!rating.equals(other.rating))
+		} else if (!filmRating.equals(other.filmRating))
 			return false;
-		if (special_features == null) {
-			if (other.special_features != null)
+		if (filmReleaseYear == null) {
+			if (other.filmReleaseYear != null)
 				return false;
-		} else if (!special_features.equals(other.special_features))
+		} else if (!filmReleaseYear.equals(other.filmReleaseYear))
 			return false;
-		if (title == null) {
-			if (other.title != null)
+		if (filmTitle == null) {
+			if (other.filmTitle != null)
 				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		if (year == null) {
-			if (other.year != null)
-				return false;
-		} else if (!year.equals(other.year))
+		} else if (!filmTitle.equals(other.filmTitle))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "[Film ID #: " + filmID + ", Title: " + title + ", Year: " + year + ", Length: " + length + ", Rating: "
-				+ rating + "]";
+//		return "Film [filmID=" + filmID + ", filmTitle=" + filmTitle + ", filmDescription=" + filmDescription
+//				+ ", filmReleaseYear=" + filmReleaseYear + ", filmLanguage=" + filmLanguage + ", filmLength="
+//				+ filmLength + ", filmRating=" + filmRating + ", filmFeatures=" + filmFeatures + "]";
+		return 	"\t* ***> " + filmTitle + " <*** *\n\n" +
+				filmReleaseYear + "\t " + filmLength + " mins.\n" +
+				"--------------------\n" +
+				filmDescription + "\n" +
+				"--------------------\n" +
+				"Rated: " + filmRating + "\n" +
+				"--------------------\n" +
+				"Language: " + filmLanguage + "\n" +
+				"--------------------\n" +
+				"Special Features: " + filmFeatures;
+				
+				
 	}
+
+
+	
 	
 }

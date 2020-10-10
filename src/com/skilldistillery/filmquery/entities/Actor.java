@@ -1,57 +1,85 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Actor {
-
-	private int IDNum;
-	private String firstName;
-	private String lastName;
-	List<Film> films;
 	
-	public Actor(int iDNum, String firstName, String lastName, List<Film> films) {
+	private int actorID;
+	private String actorFirstName;
+	private String actorLastName;
+	private List<Film> films;
+	
+	public Actor(int actorID, String actorFirstName, String actorLastName, List<Film> films) {
 		super();
-		IDNum = iDNum;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.films = films;
+		this.actorID = actorID;
+		this.actorFirstName = actorFirstName;
+		this.actorLastName = actorLastName;
+		this.films = new ArrayList<>(films);
 	}
+
 	
-	public int getIDNum() {
-		return IDNum;
+
+	public int getActorID() {
+		return actorID;
 	}
-	public void setIDNum(int iDNum) {
-		IDNum = iDNum;
+
+
+
+	public void setActorID(int actorID) {
+		this.actorID = actorID;
 	}
-	public String getFirstName() {
-		return firstName;
+
+
+
+	public String getActorFirstName() {
+		return actorFirstName;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+
+
+	public void setActorFirstName(String actorFirstName) {
+		this.actorFirstName = actorFirstName;
 	}
-	public String getLastName() {
-		return lastName;
+
+
+
+	public String getActorLastName() {
+		return actorLastName;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+
+
+	public void setActorLastName(String actorLastName) {
+		this.actorLastName = actorLastName;
 	}
+
+
+
 	public List<Film> getFilms() {
 		return films;
 	}
+
+
+
 	public void setFilms(List<Film> films) {
 		this.films = films;
 	}
+
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + IDNum;
+		result = prime * result + ((actorFirstName == null) ? 0 : actorFirstName.hashCode());
+		result = prime * result + actorID;
+		result = prime * result + ((actorLastName == null) ? 0 : actorLastName.hashCode());
 		result = prime * result + ((films == null) ? 0 : films.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -62,30 +90,32 @@ public class Actor {
 		if (getClass() != obj.getClass())
 			return false;
 		Actor other = (Actor) obj;
-		if (IDNum != other.IDNum)
+		if (actorFirstName == null) {
+			if (other.actorFirstName != null)
+				return false;
+		} else if (!actorFirstName.equals(other.actorFirstName))
+			return false;
+		if (actorID != other.actorID)
+			return false;
+		if (actorLastName == null) {
+			if (other.actorLastName != null)
+				return false;
+		} else if (!actorLastName.equals(other.actorLastName))
 			return false;
 		if (films == null) {
 			if (other.films != null)
 				return false;
 		} else if (!films.equals(other.films))
 			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Actor ID: " + IDNum + ", First Name: " + firstName + ", Last Name: " + lastName + "]";
+		return "[Actor ID #: " + actorID + ", First Name: " + actorFirstName + ", Last Name: " + actorLastName
+				+ "]";
 	}
+	
 	
 	
 }

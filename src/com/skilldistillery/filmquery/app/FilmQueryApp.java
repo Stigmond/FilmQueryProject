@@ -13,17 +13,20 @@ public class FilmQueryApp {
 
   public static void main(String[] args) {
     FilmQueryApp app = new FilmQueryApp();
-    try {
+   
 		app.test();
+	
+//    app.launch();
+  }
+
+  private void test() {
+    Film film = new Film();
+	try {
+		film = db.findFilmById(1);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-//    app.launch();
-  }
-
-  private void test() throws SQLException {
-    Film film = db.findFilmById(1);
     System.out.println(film);
   }
 
