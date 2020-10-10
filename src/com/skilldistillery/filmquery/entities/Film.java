@@ -181,14 +181,14 @@ public class Film {
 //				+ ", filmReleaseYear=" + filmReleaseYear + ", filmLanguage=" + filmLanguage + ", filmLength="
 //				+ filmLength + ", filmRating=" + filmRating + ", filmFeatures=" + filmFeatures + "]";
 		return 	"\t* ***> " + filmTitle + " <*** *\n\n" +
-				filmReleaseYear + "\t " + filmLength + " mins.\n" +
-				"--------------------\n" +
+				filmReleaseYear + " \t  " + filmLength + " mins.\n" +
+				"*--------------------\n" +
 				filmDescription + "\n" +
-				"--------------------\n" +
+				"*--------------------\n" +
 				"Rated: " + filmRating + "\n" +
-				"--------------------\n" +
+				"*--------------------\n" +
 				"Language: " + filmLanguage + "\n" +
-				"--------------------\n" +
+				"*--------------------\n" +
 				"Special Features: " + filmFeatures;
 				
 				

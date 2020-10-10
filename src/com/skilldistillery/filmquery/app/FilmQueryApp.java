@@ -22,12 +22,16 @@ public class FilmQueryApp {
   private void test() {
     Film film = new Film();
 	try {
-		film = db.findFilmById(1);
+		film = db.findFilmById(41);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	if (film == null) {
+		System.out.println("No Film Located!");
+	} else {
     System.out.println(film);
+	}
   }
 
   private void launch() {

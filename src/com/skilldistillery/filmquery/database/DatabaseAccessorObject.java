@@ -35,7 +35,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Film tempFilm = new Film();
 		String user = "student";
 		String pw = "student";
-		String sqltxt = "SELECT film.id, film.title, film.description, film.release_year, film.length, film.rating, film.special_features FROM  film JOIN language ON film.id = language.id WHERE film.id = ?";
+		String sqltxt = "SELECT film.id, film.title, film.description, film.release_year, film.length, film.rating, language.name, film.special_features FROM film JOIN language ON film.language_id = language.id WHERE film.id = ?";
 		
 		Connection conn = DriverManager.getConnection(URL, user, pw);
 		PreparedStatement stmt = conn.prepareStatement(sqltxt);
@@ -48,10 +48,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			tempFilm.setFilmReleaseYear(filmResult.getInt("film.release_year"));
 			tempFilm.setFilmLength(filmResult.getInt("film.length"));
 			tempFilm.setFilmRating(filmResult.getString("film.rating"));
+			tempFilm.setFilmLanguage(filmResult.getString("language.name"));
 			tempFilm.setFilmFeatures(filmResult.getString("film.special_features"));
 		}
 		else {
-			System.out.println("No Film Located!");
 			return null;
 		}
 		
