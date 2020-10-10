@@ -12,27 +12,33 @@ public class FilmQueryApp {
   DatabaseAccessor db = new DatabaseAccessorObject();
 
   public static void main(String[] args) {
-    FilmQueryApp app = new FilmQueryApp();
+    
+	  FilmQueryApp app = new FilmQueryApp();
    
-		app.test();
+//		app.test();
 	
-//    app.launch();
+	  	app.launch();
   }
 
-  private void test() {
-    Film film = new Film();
-	try {
-		film = db.findFilmById(41);
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	if (film == null) {
-		System.out.println("No Film Located!");
-	} else {
-    System.out.println(film);
-	}
-  }
+//  private void test() {
+//    Film film = new Film();
+////	  Actor actor = new Actor();
+//	try {
+//		film = db.findFilmById(0);
+////		actor = db.findActorById(0);
+//	} catch (SQLException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	if (film == null) {
+////	if (actor == null) {
+//		System.out.println("No Film Located!");
+////		System.out.println("No Actor Located!");
+//	} else {
+//    System.out.println(film);
+////		System.out.println(actor);
+//	}
+//  }
 
   private void launch() {
     Scanner input = new Scanner(System.in);

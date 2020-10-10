@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.filmquery.entities.Actor;
@@ -50,6 +51,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			tempFilm.setFilmRating(filmResult.getString("film.rating"));
 			tempFilm.setFilmLanguage(filmResult.getString("language.name"));
 			tempFilm.setFilmFeatures(filmResult.getString("film.special_features"));
+			tempFilm.setActorsInFilm(findActorsByFilmId(filmId));
 		}
 		else {
 			return null;
@@ -60,39 +62,58 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return tempFilm;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	@Override
-	public Actor findActorById(int actorId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Actor findActorById(int actorId) throws SQLException {
+		
+		Actor tempActor = new Actor();
+		String user = "student";
+		String pw = "student";
+		String sqltxt = "SELECT * FROM actor WHERE actor.id = ?";
+		
+		Connection conn = DriverManager.getConnection(URL, user, pw);
+		PreparedStatement stmt = conn.prepareStatement(sqltxt);
+		stmt.setInt(1, actorId);
+		ResultSet actorResult = stmt.executeQuery();
+		if(actorResult.next()) {
+			tempActor.setActorID(actorResult.getInt("actor.id"));
+			tempActor.setActorFirstName(actorResult.getString("actor.first_name"));
+			tempActor.setActorLastName(actorResult.getString("actor.last_name"));
+		}
+		else {
+			return null;
+		}
+		
+		stmt.close();
+		conn.close();
+		return tempActor;
 	}
 
 	@Override
-	public List<Actor> findActorsByFilmId(int filmId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Actor> findActorsByFilmId(int filmId) throws SQLException {
+		
+		List<Actor> tempList = new ArrayList<>();
+		Actor tempActor;
+		String user = "student";
+		String pw = "student";
+		String sqltxt = "SELECT actor.id, actor.first_name, actor.last_name FROM actor JOIN film_actor ON actor.id = film_actor.actor_id JOIN film ON film.id = film_actor.film_id WHERE film.id = ?";
+		
+		Connection conn = DriverManager.getConnection(URL, user, pw);
+		PreparedStatement stmt = conn.prepareStatement(sqltxt);
+		stmt.setInt(1, filmId);
+		ResultSet resultList = stmt.executeQuery();
+		if (resultList == null) {
+			return null;
+		} else {
+		while (resultList.next()) {
+			tempActor = new Actor();
+			tempActor.setActorID(resultList.getInt("actor.id"));
+			tempActor.setActorFirstName(resultList.getString("actor.first_name"));
+			tempActor.setActorLastName(resultList.getString("actor.last_name"));
+			tempList.add(tempActor);
+		}
+		return tempList;
+		}
 	}
 
 }

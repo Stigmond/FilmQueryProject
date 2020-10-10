@@ -10,6 +10,10 @@ public class Actor {
 	private String actorLastName;
 	private List<Film> films;
 	
+	public Actor() {
+		
+	}
+	
 	public Actor(int actorID, String actorFirstName, String actorLastName, List<Film> films) {
 		super();
 		this.actorID = actorID;
@@ -112,8 +116,9 @@ public class Actor {
 
 	@Override
 	public String toString() {
-		return "[Actor ID #: " + actorID + ", First Name: " + actorFirstName + ", Last Name: " + actorLastName
-				+ "]";
+//		return "[Actor ID #: " + actorID + ", First Name: " + actorFirstName + ", Last Name: " + actorLastName
+//				+ "]";
+		return actorFirstName + " " + actorLastName;
 	}
 	
 	

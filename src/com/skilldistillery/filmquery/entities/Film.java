@@ -183,9 +183,12 @@ public class Film {
 		return 	"\t* ***> " + filmTitle + " <*** *\n\n" +
 				filmReleaseYear + " \t  " + filmLength + " mins.\n" +
 				"*--------------------\n" +
-				filmDescription + "\n" +
+				"Starring:\n" +
+				actorsInFilm + "\n" +
 				"*--------------------\n" +
 				"Rated: " + filmRating + "\n" +
+				"*--------------------\n" +
+				filmDescription + "\n" +
 				"*--------------------\n" +
 				"Language: " + filmLanguage + "\n" +
 				"*--------------------\n" +
