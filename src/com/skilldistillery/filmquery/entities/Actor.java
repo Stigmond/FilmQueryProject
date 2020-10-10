@@ -71,7 +71,6 @@ public class Actor {
 	}
 
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -82,8 +81,6 @@ public class Actor {
 		result = prime * result + ((films == null) ? 0 : films.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -120,7 +117,5 @@ public class Actor {
 //				+ "]";
 		return actorFirstName + " " + actorLastName;
 	}
-	
-	
 	
 }
