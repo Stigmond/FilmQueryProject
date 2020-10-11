@@ -15,13 +15,11 @@ public class FilmQueryApp {
 	DatabaseAccessor db = new DatabaseAccessorObject();
 
 	public static void main(String[] args) {
+
 		FilmQueryApp app = new FilmQueryApp();
 
 		app.launch();
 	}
-
-//		film = db.findFilmById((int)(Math.random() * (1000 - 1)) + 1);
-
 
 	private void launch() {
 
@@ -60,22 +58,7 @@ public class FilmQueryApp {
 					System.out.println("\nMay We Suggest:\n");
 					Film suggestion = db.findFilmById((int)(Math.random() * (1000 - 1)) + 1);
 					System.out.println(suggestion);
-					boolean exitSub = false;
-					do {
-						System.out.print("\n(1) View All Film Details | (2) Return to Main Menu: ");
-						String subMenu = input.nextLine();
-						switch (subMenu) {
-						case "1":
-							FilmDataDisplayer.showFilmInfo(suggestion);
-							break;
-						case "2":
-							System.out.println("\nReturning to Main Menu...");
-							exitSub = true;
-							break;
-						default:
-							System.out.print("Please Select 1 or 2: ");
-						}
-					} while (!exitSub);
+					getDetails(input, suggestion);
 					break;
 				
 				} catch (SQLException e) {
@@ -86,6 +69,7 @@ public class FilmQueryApp {
 				System.out.println("\nGoodbye!");
 				keepGoing = false;
 				break;
+				
 			default:
 				System.out.println("\nInvalid Entry\n");
 				break;
@@ -121,7 +105,6 @@ public class FilmQueryApp {
 		Film tempFilm = null;
 		int filmId;
 		boolean badInput = false;
-		boolean exitSub = false;
 
 		do {
 		
@@ -145,22 +128,7 @@ public class FilmQueryApp {
 				badInput = true;		
 			} else {
 				System.out.println(tempFilm);
-				
-				do {
-					System.out.print("\n(1) View All Film Details | (2) Return to Main Menu: ");
-					String subMenu = input.nextLine();
-					switch (subMenu) {
-					case "1":
-						FilmDataDisplayer.showFilmInfo(tempFilm);
-						break;
-					case "2":
-						System.out.println("\nReturning to Main Menu...");
-						exitSub = true;
-						break;
-					default:
-						System.out.print("Please Select 1 or 2: ");
-					}
-				} while (!exitSub);
+				getDetails(input, tempFilm);
 			}
 		} while (badInput);
 	}
@@ -199,5 +167,22 @@ public class FilmQueryApp {
 		} while (badInput);
 	}
 
-	
+	public void getDetails(Scanner input, Film film) {
+		boolean exitSub = false;
+		do {
+			System.out.print("\n(1) View All Film Details | (2) Return to Main Menu: ");
+			String subMenu = input.nextLine();
+			switch (subMenu) {
+			case "1":
+				FilmDataDisplayer.showFilmInfo(film);
+				break;
+			case "2":
+				System.out.println("\nReturning to Main Menu...");
+				exitSub = true;
+				break;
+			default:
+				System.out.print("Please Select 1 or 2.");
+			}
+		} while (!exitSub);
+	}
 }
