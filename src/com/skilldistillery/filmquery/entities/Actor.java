@@ -22,54 +22,37 @@ public class Actor {
 		this.films = new ArrayList<>(films);
 	}
 
-	
-
 	public int getActorID() {
 		return actorID;
 	}
-
-
 
 	public void setActorID(int actorID) {
 		this.actorID = actorID;
 	}
 
-
-
 	public String getActorFirstName() {
 		return actorFirstName;
 	}
-
-
 
 	public void setActorFirstName(String actorFirstName) {
 		this.actorFirstName = actorFirstName;
 	}
 
-
-
 	public String getActorLastName() {
 		return actorLastName;
 	}
-
-
 
 	public void setActorLastName(String actorLastName) {
 		this.actorLastName = actorLastName;
 	}
 
-
-
 	public List<Film> getFilms() {
 		return films;
 	}
 
-
-
 	public void setFilms(List<Film> films) {
 		this.films = films;
 	}
-
 
 	@Override
 	public int hashCode() {

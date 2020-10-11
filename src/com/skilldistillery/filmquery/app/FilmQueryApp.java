@@ -50,23 +50,15 @@ public class FilmQueryApp {
 
 			case "2":
 				filmByKeyword(input, db);
-				
 				break;
 			
 			case "3":
-				try {
-					System.out.println("\nMay We Suggest:\n");
-					Film suggestion = db.findFilmById((int)(Math.random() * (1000 - 1)) + 1);
-					System.out.println(suggestion);
-					getDetails(input, suggestion);
-					break;
-				
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				randomFilm(input);
+				break;
 				
 			case "0":
-				System.out.println("\nGoodbye! There's No Place Like Home...");
+				System.out.println("\nThere's No Place Like Home...");
+				System.out.println("Goodbye!");
 				keepGoing = false;
 				break;
 				
@@ -88,14 +80,14 @@ public class FilmQueryApp {
 		System.out.println("*************************************");
 		System.out.println("*************************************");
 		System.out.println("***                               ***");
-		System.out.println("***   1. Look Up Film by ID       ***");
+		System.out.println("*** 1. Look Up Film by ID         ***");
 		System.out.println("***                               ***");
-		System.out.println("***   2. Look Up Film by Keyword  ***");
+		System.out.println("*** 2. Search Film(s) by Keyword  ***");
 		System.out.println("***                               ***");
-		System.out.println("***   3. Thrill Me...             ***");
+		System.out.println("*** 3. Thrill Me...               ***");
 		System.out.println("***                               ***");
 		System.out.println("***                               ***");
-		System.out.println("***   0. Exit                     ***");
+		System.out.println("*** 0. Exit                       ***");
 		System.out.println("***                               ***");
 		System.out.println("*************************************");
 		System.out.println("*************************************");
@@ -159,7 +151,7 @@ public class FilmQueryApp {
 				badInput = true;
 			}
 			if (filmList.isEmpty()) {
-				System.out.println("<< No Film(s) Located! >>");
+				System.out.println("\n<< No Film(s) Located! >>");
 				badInput = true;		
 			} else {
 				for (Film film : filmList) {
@@ -170,6 +162,19 @@ public class FilmQueryApp {
 		} while (badInput);
 	}
 
+	public void randomFilm(Scanner input) {
+		
+		try {
+			System.out.println("\nMay We Suggest:\n");
+			Film suggestion = db.findFilmById((int)(Math.random() * (1000 - 1)) + 1);
+			System.out.println(suggestion);
+			getDetails(input, suggestion);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void getDetails(Scanner input, Film film) {
 		boolean exitSub = false;
 		System.out.println("\nWould You Like To Know More?");

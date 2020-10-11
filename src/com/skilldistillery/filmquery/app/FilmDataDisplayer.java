@@ -2,6 +2,7 @@ package com.skilldistillery.filmquery.app;
 
 import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
+import com.skilldistillery.filmquery.entities.Inventory;
 
 public class FilmDataDisplayer {
 	
@@ -29,7 +30,11 @@ public class FilmDataDisplayer {
 		sb.append("Category: ").append(film.getCategory());
 		sb.append("\n--------------------\n");
 		sb.append("Language: ").append(film.getFilmLanguage());
-
+		sb.append("\n--------------------\n");
+		for (Inventory inventory: film.getInventoryData()) {
+			sb.append("Inventory No." + inventory.getInventoryId()).append("\tCondition: " + inventory.getItemCondition());
+			sb.append('\n');
+		}
 		System.out.println(sb.toString());
 	}
 }

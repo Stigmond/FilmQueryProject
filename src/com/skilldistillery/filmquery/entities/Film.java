@@ -1,6 +1,5 @@
 package com.skilldistillery.filmquery.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Film {
@@ -15,13 +14,15 @@ public class Film {
 	private String filmFeatures;
 	private String category;
 	private List<Actor> actorsInFilm;
+	private List<Inventory> inventoryData;
 	
 	public Film() {
 		
 	}
 	
 	public Film(int filmID, String filmTitle, String filmDescription, Integer filmReleaseYear, String filmLanguage,
-			Integer filmLength, String filmRating, String filmFeatures, String category, List<Actor> actorsInFilm) {
+			Integer filmLength, String filmRating, String filmFeatures, String category, List<Actor> actorsInFilm,
+			List<Inventory> inventoryData) {
 		super();
 		this.filmID = filmID;
 		this.filmTitle = filmTitle;
@@ -32,8 +33,8 @@ public class Film {
 		this.filmRating = filmRating;
 		this.filmFeatures = filmFeatures;
 		this.category = category;
-		this.actorsInFilm = new ArrayList<>(actorsInFilm);
-		
+		this.actorsInFilm = actorsInFilm;
+		this.inventoryData = inventoryData;
 	}
 
 	public int getFilmID() {
@@ -103,11 +104,11 @@ public class Film {
 	public String getCategory() {
 		return category;
 	}
-	
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+
 	public List<Actor> getActorsInFilm() {
 		return actorsInFilm;
 	}
@@ -116,7 +117,15 @@ public class Film {
 		this.actorsInFilm = actorsInFilm;
 	}
 
+	public List<Inventory> getInventoryData() {
+		return inventoryData;
+	}
+
+	public void setInventoryData(List<Inventory> inventoryData) {
+		this.inventoryData = inventoryData;
+	}
 	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -131,6 +140,7 @@ public class Film {
 		result = prime * result + ((filmRating == null) ? 0 : filmRating.hashCode());
 		result = prime * result + ((filmReleaseYear == null) ? 0 : filmReleaseYear.hashCode());
 		result = prime * result + ((filmTitle == null) ? 0 : filmTitle.hashCode());
+		result = prime * result + ((inventoryData == null) ? 0 : inventoryData.hashCode());
 		return result;
 	}
 
@@ -190,40 +200,18 @@ public class Film {
 				return false;
 		} else if (!filmTitle.equals(other.filmTitle))
 			return false;
+		if (inventoryData == null) {
+			if (other.inventoryData != null)
+				return false;
+		} else if (!inventoryData.equals(other.inventoryData))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Film #: " + filmID + " -- Title: " + filmTitle + " -- Year: " + filmReleaseYear + " -- Rating: " + filmRating + " -- Description: " + filmDescription;
+		return "Film #: " + filmID + " - Title: " + filmTitle + " - Year: " + filmReleaseYear + " - Rating: " + filmRating + " - Description: " + filmDescription;
 
-//		return "Film [filmID=" + filmID + ", filmTitle=" + filmTitle + ", filmDescription=" + filmDescription
-//				+ ", filmReleaseYear=" + filmReleaseYear + ", filmLanguage=" + filmLanguage + ", filmLength="
-//				+ filmLength + ", filmRating=" + filmRating + ", filmFeatures=" + filmFeatures + "]";
-						
-//		StringBuilder sb = new StringBuilder("\n");
-//		sb.append("*------>>  ").append(filmTitle).append("  <<------*");
-//		sb.append("\n\nStarring:\n\n");
-//		for (Actor actor : actorsInFilm) {
-//			sb.append(actor);
-//			sb.append("\n");
-//		}
-//		sb.append("\n-----------------\n");
-//		sb.append(filmReleaseYear).append("\t").append(filmLength).append(" mins.\n");
-//		sb.append("-----------------\n");
-//		sb.append("Rated: ").append(filmRating);
-//		sb.append("\n-----------------\n");
-//		sb.append(filmDescription);
-//		sb.append("\n-----------------\n");
-//		sb.append("Language: ").append(filmLanguage);		
-//		
-//		return sb.toString();
 	}	
 
-				
-	
-
-
-	
-	
 }
