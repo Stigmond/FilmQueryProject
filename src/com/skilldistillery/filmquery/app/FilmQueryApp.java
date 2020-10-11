@@ -177,7 +177,7 @@ public class FilmQueryApp {
 				input.nextLine();
 				badInput = true;
 			}
-			if (filmList == null) {
+			if (filmList.isEmpty()) {
 				System.out.println("\n<< No Film(s) Located! >>");
 				badInput = true;		
 			} else {
