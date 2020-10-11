@@ -9,7 +9,7 @@ public class FilmDataDisplayer {
 	
 	}
 	
-	public void showFilmInfo(Film film) {
+	public static void showFilmInfo(Film film) {
 		
 		StringBuilder sb = new StringBuilder("\n");
 		sb.append("*------>>  ").append(film.getFilmTitle()).append("  <<------*");
@@ -18,12 +18,14 @@ public class FilmDataDisplayer {
 			sb.append(actor);
 			sb.append("\n");
 		}
-		sb.append("\n-------------------\n");
-		sb.append(film.getFilmReleaseYear()).append("\t").append("Rated: ")
+		sb.append("\n--------------------\n");
+		sb.append(film.getFilmReleaseYear()).append("\t").append(" Rated: ")
 				.append(film.getFilmRating());
-		sb.append("\n-------------------\n");
+		sb.append("\n--------------------\n");
+		sb.append("Running Time: " + film.getFilmLength() + " min.");
+		sb.append("\n--------------------\n");
 		sb.append(film.getFilmDescription());
-		sb.append("\n-------------------\n");
+		sb.append("\n--------------------\n");
 		sb.append("Language: ").append(film.getFilmLanguage());
 
 		System.out.println(sb.toString());

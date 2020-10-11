@@ -17,29 +17,11 @@ public class FilmQueryApp {
 	public static void main(String[] args) {
 		FilmQueryApp app = new FilmQueryApp();
 
-//		app.test();
-
 		app.launch();
 	}
 
-//  private void test() {
-//    Film film = new Film();
-////	  Actor actor = new Actor();
-//	try {
 //		film = db.findFilmById((int)(Math.random() * (1000 - 1)) + 1);
-////		actor = db.findActorById(0);
-//	} catch (SQLException e) {
-//		e.printStackTrace();
-//	}
-//	if (film == null) {
-////	if (actor == null) {
-//		System.out.println("No Film Located!");
-////		System.out.println("No Actor Located!");
-//	} else {
-//    System.out.println(film);
-////		System.out.println(actor);
-//	}
-//  }
+
 
 	private void launch() {
 
@@ -72,6 +54,34 @@ public class FilmQueryApp {
 				filmByKeyword(input, db);
 				
 				break;
+			
+			case "3":
+				try {
+					System.out.println("\nMay We Suggest:\n");
+					Film suggestion = db.findFilmById((int)(Math.random() * (1000 - 1)) + 1);
+					System.out.println(suggestion);
+					boolean exitSub = false;
+					do {
+						System.out.print("\n(1) View All Film Details | (2) Return to Main Menu: ");
+						String subMenu = input.nextLine();
+						switch (subMenu) {
+						case "1":
+							FilmDataDisplayer.showFilmInfo(suggestion);
+							break;
+						case "2":
+							System.out.println("\nReturning to Main Menu...");
+							exitSub = true;
+							break;
+						default:
+							System.out.print("Please Select 1 or 2: ");
+						}
+					} while (!exitSub);
+					break;
+				
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
 			case "0":
 				System.out.println("\nGoodbye!");
 				keepGoing = false;
@@ -95,10 +105,10 @@ public class FilmQueryApp {
 		System.out.println("*************************************");
 		System.out.println("***                               ***");
 		System.out.println("***   1. Look Up Film by ID       ***");
+		System.out.println("***                               ***");
 		System.out.println("***   2. Look Up Film by Keyword  ***");
 		System.out.println("***                               ***");
-		System.out.println("***                               ***");
-		System.out.println("***                               ***");
+		System.out.println("***   3. Surprise Me!             ***");
 		System.out.println("***                               ***");
 		System.out.println("***                               ***");
 		System.out.println("***   0. Exit                     ***");
@@ -119,6 +129,7 @@ public class FilmQueryApp {
 				System.out.print("\nPlease Enter Film ID#: ");
 				filmId = input.nextInt();
 				badInput = false;
+				System.out.println("");
 				tempFilm = db.findFilmById(filmId);
 				input.nextLine();
 			} catch (SQLException e) {
@@ -140,11 +151,10 @@ public class FilmQueryApp {
 					String subMenu = input.nextLine();
 					switch (subMenu) {
 					case "1":
-						FilmDataDisplayer fd = new FilmDataDisplayer();
-						fd.showFilmInfo(tempFilm);
+						FilmDataDisplayer.showFilmInfo(tempFilm);
 						break;
 					case "2":
-						System.out.println("Returning to Main Menu...");
+						System.out.println("\nReturning to Main Menu...");
 						exitSub = true;
 						break;
 					default:
@@ -167,6 +177,7 @@ public class FilmQueryApp {
 				System.out.print("\nPlease Enter a Keyword: ");
 				keyword = input.nextLine();
 				badInput = false;
+				System.out.println("");
 				filmList = db.findFilmsByKeyword(keyword);
 //				input.nextLine();
 			} catch (SQLException e) {
@@ -177,7 +188,7 @@ public class FilmQueryApp {
 				badInput = true;
 			}
 			if (filmList.isEmpty()) {
-				System.out.println("\n<< No Film(s) Located! >>");
+				System.out.println("<< No Film(s) Located! >>");
 				badInput = true;		
 			} else {
 				for (Film film : filmList) {
