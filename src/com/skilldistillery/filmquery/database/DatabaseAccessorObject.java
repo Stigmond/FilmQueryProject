@@ -33,7 +33,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Film tempFilm = new Film();
 		String user = "student";
 		String pw = "student";
-		String sqltxt = "SELECT film.id, film.title, film.description, film.release_year, film.length, film.rating, language.name, film.special_features FROM film JOIN language ON film.language_id = language.id WHERE film.id = ?";
+		String sqltxt = "SELECT film.id, film.title, film.description, film.release_year, film.length, film.rating, film.special_features, language.name, category.name FROM film JOIN film_category ON film.id = film_category.film_id JOIN category ON category.id = film_category.category_id JOIN language ON film.language_id = language.id WHERE film.id = ?";
 
 		Connection conn = DriverManager.getConnection(URL, user, pw);
 		PreparedStatement stmt = conn.prepareStatement(sqltxt);
@@ -48,6 +48,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			tempFilm.setFilmRating(filmResult.getString("film.rating"));
 			tempFilm.setFilmLanguage(filmResult.getString("language.name"));
 			tempFilm.setFilmFeatures(filmResult.getString("film.special_features"));
+			tempFilm.setCategory(filmResult.getString("category.name"));
 			tempFilm.setActorsInFilm(findActorsByFilmId(filmId));
 		} else {
 			return null;
@@ -137,10 +138,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				tempActor.setActorLastName(resultList.getString("actor.last_name"));
 				tempList.add(tempActor);
 			}
+			stmt.close();
+			conn.close();
 			return tempList;
 		}
 	
 	}
 
-	
 }

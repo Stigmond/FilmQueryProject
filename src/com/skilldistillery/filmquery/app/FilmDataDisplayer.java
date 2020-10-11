@@ -26,6 +26,8 @@ public class FilmDataDisplayer {
 		sb.append("\n--------------------\n");
 		sb.append(film.getFilmDescription());
 		sb.append("\n--------------------\n");
+		sb.append("Category: ").append(film.getCategory());
+		sb.append("\n--------------------\n");
 		sb.append("Language: ").append(film.getFilmLanguage());
 
 		System.out.println(sb.toString());

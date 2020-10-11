@@ -40,7 +40,7 @@ public class FilmQueryApp {
 		while (keepGoing) {
 			displayMenu();
 
-			System.out.print("\nPlease Enter Your Selection: ");
+			System.out.print("\nYou Must Choose. But Choose Wisely: ");
 			menuSelection = input.nextLine();
 			switch (menuSelection) {
 
@@ -66,7 +66,7 @@ public class FilmQueryApp {
 				}
 				
 			case "0":
-				System.out.println("\nGoodbye!");
+				System.out.println("\nGoodbye! There's No Place Like Home...");
 				keepGoing = false;
 				break;
 				
@@ -92,7 +92,7 @@ public class FilmQueryApp {
 		System.out.println("***                               ***");
 		System.out.println("***   2. Look Up Film by Keyword  ***");
 		System.out.println("***                               ***");
-		System.out.println("***   3. Surprise Me!             ***");
+		System.out.println("***   3. Thrill Me...             ***");
 		System.out.println("***                               ***");
 		System.out.println("***                               ***");
 		System.out.println("***   0. Exit                     ***");
@@ -144,10 +144,13 @@ public class FilmQueryApp {
 			try {
 				System.out.print("\nPlease Enter a Keyword: ");
 				keyword = input.nextLine();
-				badInput = false;
+				if (keyword.equals("")) {
+					badInput = true;
+				} else {
 				System.out.println("");
 				filmList = db.findFilmsByKeyword(keyword);
-//				input.nextLine();
+				badInput = false;
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (InputMismatchException e) {
@@ -169,6 +172,7 @@ public class FilmQueryApp {
 
 	public void getDetails(Scanner input, Film film) {
 		boolean exitSub = false;
+		System.out.println("\nWould You Like To Know More?");
 		do {
 			System.out.print("\n(1) View All Film Details | (2) Return to Main Menu: ");
 			String subMenu = input.nextLine();

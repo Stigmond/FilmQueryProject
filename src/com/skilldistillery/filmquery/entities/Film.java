@@ -13,6 +13,7 @@ public class Film {
 	private Integer filmLength;
 	private String filmRating;
 	private String filmFeatures;
+	private String category;
 	private List<Actor> actorsInFilm;
 	
 	public Film() {
@@ -20,7 +21,7 @@ public class Film {
 	}
 	
 	public Film(int filmID, String filmTitle, String filmDescription, Integer filmReleaseYear, String filmLanguage,
-			Integer filmLength, String filmRating, String filmFeatures, List<Actor> actorsInFilm) {
+			Integer filmLength, String filmRating, String filmFeatures, String category, List<Actor> actorsInFilm) {
 		super();
 		this.filmID = filmID;
 		this.filmTitle = filmTitle;
@@ -30,7 +31,9 @@ public class Film {
 		this.filmLength = filmLength;
 		this.filmRating = filmRating;
 		this.filmFeatures = filmFeatures;
+		this.category = category;
 		this.actorsInFilm = new ArrayList<>(actorsInFilm);
+		
 	}
 
 	public int getFilmID() {
@@ -97,6 +100,14 @@ public class Film {
 		this.filmFeatures = filmFeatures;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+	
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 	public List<Actor> getActorsInFilm() {
 		return actorsInFilm;
 	}
@@ -105,11 +116,13 @@ public class Film {
 		this.actorsInFilm = actorsInFilm;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((actorsInFilm == null) ? 0 : actorsInFilm.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((filmDescription == null) ? 0 : filmDescription.hashCode());
 		result = prime * result + ((filmFeatures == null) ? 0 : filmFeatures.hashCode());
 		result = prime * result + filmID;
@@ -134,6 +147,11 @@ public class Film {
 			if (other.actorsInFilm != null)
 				return false;
 		} else if (!actorsInFilm.equals(other.actorsInFilm))
+			return false;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
 			return false;
 		if (filmDescription == null) {
 			if (other.filmDescription != null)
