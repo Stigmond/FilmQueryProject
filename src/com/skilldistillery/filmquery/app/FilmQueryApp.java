@@ -1,11 +1,13 @@
 package com.skilldistillery.filmquery.app;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
-import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
@@ -41,7 +43,7 @@ public class FilmQueryApp {
 //  }
 
 	private void launch() {
-		
+
 		Scanner input = new Scanner(System.in);
 
 		startUserInterface(input);
@@ -58,24 +60,25 @@ public class FilmQueryApp {
 
 		while (keepGoing) {
 			displayMenu();
-			
+
 			System.out.print("\nPlease Enter Your Selection: ");
 			menuSelection = input.nextLine();
 			switch (menuSelection) {
-			
+
 			case "1":
 				filmById(input, db);
 				break;
-			
+
 			case "2":
-				System.out.println("Option 2\n");
+				filmByKeyword(input, db);
+				
 				break;
 			case "0":
-				System.out.println("Goodbye!\n");
+				System.out.println("\nGoodbye!");
 				keepGoing = false;
 				break;
 			default:
-				System.out.println("Invalid Entry\n");
+				System.out.println("\nInvalid Entry\n");
 				break;
 			}
 		}
@@ -106,42 +109,102 @@ public class FilmQueryApp {
 	}
 
 	public void filmById(Scanner input, DatabaseAccessor db) {
-		
+
 		Film tempFilm = null;
 		int filmId;
+		boolean badInput = false;
+
+		do {
 		
-		System.out.print("\nPlease Enter Film ID#: ");
-		filmId = input.nextInt();
-		
-		try {
-		tempFilm = db.findFilmById(filmId);
-		input.nextLine();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		if (tempFilm == null) {
-			System.out.println("Film Not Located!");
-		} else {
-			StringBuilder sb = new StringBuilder("\n");
-			sb.append("*------>>  ").append(tempFilm.getFilmTitle()).append("  <<------*");
-			sb.append("\n\nStarring:\n\n");
-			for (Actor actor : tempFilm.getActorsInFilm()) {
-				sb.append(actor);
-				sb.append("\n");
+			try {
+				System.out.print("\nPlease Enter Film ID#: ");
+				filmId = input.nextInt();
+				badInput = false;
+				tempFilm = db.findFilmById(filmId);
+				input.nextLine();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (InputMismatchException e) {
+				System.out.println("\nInvalid Entry");
+				input.nextLine();
+				badInput = true;
 			}
-			sb.append("\n-------------------\n");
-			sb.append(tempFilm.getFilmReleaseYear()).append("\t").append("Rated: ").append(tempFilm.getFilmRating());
-			sb.append("\n-------------------\n");
-			sb.append(tempFilm.getFilmDescription());
-			sb.append("\n-------------------\n");
-			sb.append("Language: ").append(tempFilm.getFilmLanguage());		
-			
-			System.out.println(sb.toString());
-			
-		}
+
+			if (tempFilm == null) {
+				System.out.println("\n<< Film Not Located! >>");
+				badInput = true;		
+			} else {
+				System.out.println(tempFilm);
+//				StringBuilder sb = new StringBuilder("\n");
+//				sb.append("*------>>  ").append(tempFilm.getFilmTitle()).append("  <<------*");
+//				sb.append("\n\nStarring:\n\n");
+//				for (Actor actor : tempFilm.getActorsInFilm()) {
+//					sb.append(actor);
+//					sb.append("\n");
+//				}
+//				sb.append("\n-------------------\n");
+//				sb.append(tempFilm.getFilmReleaseYear()).append("\t").append("Rated: ")
+//						.append(tempFilm.getFilmRating());
+//				sb.append("\n-------------------\n");
+//				sb.append(tempFilm.getFilmDescription());
+//				sb.append("\n-------------------\n");
+//				sb.append("Language: ").append(tempFilm.getFilmLanguage());
+//
+//				System.out.println(sb.toString());
+
+			}
+		} while (badInput);
 	}
 	
-	public void filmByKeyword() {
+	public void filmByKeyword(Scanner input, DatabaseAccessor db) {
 		
+		List<Film> filmList = new ArrayList<>();
+		String keyword;
+		boolean badInput = false;
+
+		do {
+		
+			try {
+				System.out.print("\nPlease Enter a Keyword: ");
+				keyword = input.nextLine();
+				badInput = false;
+				filmList = db.findFilmsByKeyword(keyword);
+//				input.nextLine();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (InputMismatchException e) {
+				System.out.println("\nInvalid Entry");
+				input.nextLine();
+				badInput = true;
+			}
+			if (filmList == null) {
+				System.out.println("\n<< No Film(s) Located! >>");
+				badInput = true;		
+			} else {
+				for (Film film : filmList) {
+					System.out.println(film);
+				}
+
+//				StringBuilder sb = new StringBuilder("\n");
+//				sb.append("*------>>  ").append(tempFilm.getFilmTitle()).append("  <<------*");
+//				sb.append("\n\nStarring:\n\n");
+//				for (Actor actor : tempFilm.getActorsInFilm()) {
+//					sb.append(actor);
+//					sb.append("\n");
+//				}
+//				sb.append("\n-------------------\n");
+//				sb.append(tempFilm.getFilmReleaseYear()).append("\t").append("Rated: ")
+//						.append(tempFilm.getFilmRating());
+//				sb.append("\n-------------------\n");
+//				sb.append(tempFilm.getFilmDescription());
+//				sb.append("\n-------------------\n");
+//				sb.append("Language: ").append(tempFilm.getFilmLanguage());
+//
+//				System.out.println(sb.toString());
+
+			}
+		} while (badInput);
 	}
+
+	
 }

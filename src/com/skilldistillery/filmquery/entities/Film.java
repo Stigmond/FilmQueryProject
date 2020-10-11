@@ -177,10 +177,13 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film [filmID=" + filmID + ", filmTitle=" + filmTitle + ", filmDescription=" + filmDescription
-				+ ", filmReleaseYear=" + filmReleaseYear + ", filmLanguage=" + filmLanguage + ", filmLength="
-				+ filmLength + ", filmRating=" + filmRating + ", filmFeatures=" + filmFeatures + "]";
+		return "Title: " + filmTitle + " -- Year: " + filmReleaseYear + " -- Rating: " + filmRating + " -- Description: " + filmDescription; 
+
+//		return "Film [filmID=" + filmID + ", filmTitle=" + filmTitle + ", filmDescription=" + filmDescription
+//				+ ", filmReleaseYear=" + filmReleaseYear + ", filmLanguage=" + filmLanguage + ", filmLength="
+//				+ filmLength + ", filmRating=" + filmRating + ", filmFeatures=" + filmFeatures + "]";
 				
+		
 //		StringBuilder sb = new StringBuilder();
 //		sb.append("*------>>  ").append(filmTitle).append("  <<------*");
 //		sb.append("\n\nStarring:\n\n");
