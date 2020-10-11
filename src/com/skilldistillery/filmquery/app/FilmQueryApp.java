@@ -29,7 +29,6 @@ public class FilmQueryApp {
 //		film = db.findFilmById((int)(Math.random() * (1000 - 1)) + 1);
 ////		actor = db.findActorById(0);
 //	} catch (SQLException e) {
-//		// TODO Auto-generated catch block
 //		e.printStackTrace();
 //	}
 //	if (film == null) {
@@ -109,10 +108,10 @@ public class FilmQueryApp {
 	}
 
 	public void filmById(Scanner input, DatabaseAccessor db) {
-
 		Film tempFilm = null;
 		int filmId;
 		boolean badInput = false;
+		boolean exitSub = false;
 
 		do {
 		
@@ -135,23 +134,23 @@ public class FilmQueryApp {
 				badInput = true;		
 			} else {
 				System.out.println(tempFilm);
-//				StringBuilder sb = new StringBuilder("\n");
-//				sb.append("*------>>  ").append(tempFilm.getFilmTitle()).append("  <<------*");
-//				sb.append("\n\nStarring:\n\n");
-//				for (Actor actor : tempFilm.getActorsInFilm()) {
-//					sb.append(actor);
-//					sb.append("\n");
-//				}
-//				sb.append("\n-------------------\n");
-//				sb.append(tempFilm.getFilmReleaseYear()).append("\t").append("Rated: ")
-//						.append(tempFilm.getFilmRating());
-//				sb.append("\n-------------------\n");
-//				sb.append(tempFilm.getFilmDescription());
-//				sb.append("\n-------------------\n");
-//				sb.append("Language: ").append(tempFilm.getFilmLanguage());
-//
-//				System.out.println(sb.toString());
-
+				
+				do {
+					System.out.print("\n(1) View All Film Details | (2) Return to Main Menu: ");
+					String subMenu = input.nextLine();
+					switch (subMenu) {
+					case "1":
+						FilmDataDisplayer fd = new FilmDataDisplayer();
+						fd.showFilmInfo(tempFilm);
+						break;
+					case "2":
+						System.out.println("Returning to Main Menu...");
+						exitSub = true;
+						break;
+					default:
+						System.out.print("Please Select 1 or 2: ");
+					}
+				} while (!exitSub);
 			}
 		} while (badInput);
 	}
@@ -184,23 +183,6 @@ public class FilmQueryApp {
 				for (Film film : filmList) {
 					System.out.println(film);
 				}
-
-//				StringBuilder sb = new StringBuilder("\n");
-//				sb.append("*------>>  ").append(tempFilm.getFilmTitle()).append("  <<------*");
-//				sb.append("\n\nStarring:\n\n");
-//				for (Actor actor : tempFilm.getActorsInFilm()) {
-//					sb.append(actor);
-//					sb.append("\n");
-//				}
-//				sb.append("\n-------------------\n");
-//				sb.append(tempFilm.getFilmReleaseYear()).append("\t").append("Rated: ")
-//						.append(tempFilm.getFilmRating());
-//				sb.append("\n-------------------\n");
-//				sb.append(tempFilm.getFilmDescription());
-//				sb.append("\n-------------------\n");
-//				sb.append("Language: ").append(tempFilm.getFilmLanguage());
-//
-//				System.out.println(sb.toString());
 
 			}
 		} while (badInput);

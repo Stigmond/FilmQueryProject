@@ -80,6 +80,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			tempFilm.setFilmRating(filmResult.getString("film.rating"));
 			tempFilm.setFilmLanguage(filmResult.getString("language.name"));
 			tempFilm.setFilmFeatures(filmResult.getString("film.special_features"));
+			tempFilm.setActorsInFilm(findActorsByFilmId(tempFilm.getFilmID()));
 			filmList.add(tempFilm);
 		}
 		stmt.close();
@@ -138,6 +139,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			}
 			return tempList;
 		}
+	
 	}
 
+	
 }

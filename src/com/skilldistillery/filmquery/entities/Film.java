@@ -177,14 +177,13 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Title: " + filmTitle + " -- Year: " + filmReleaseYear + " -- Rating: " + filmRating + " -- Description: " + filmDescription + " -- Language: " + filmLanguage; 
+		return "Film #: " + filmID + " -- Title: " + filmTitle + " -- Year: " + filmReleaseYear + " -- Rating: " + filmRating + " -- Description: " + filmDescription;
 
 //		return "Film [filmID=" + filmID + ", filmTitle=" + filmTitle + ", filmDescription=" + filmDescription
 //				+ ", filmReleaseYear=" + filmReleaseYear + ", filmLanguage=" + filmLanguage + ", filmLength="
 //				+ filmLength + ", filmRating=" + filmRating + ", filmFeatures=" + filmFeatures + "]";
-				
-		
-//		StringBuilder sb = new StringBuilder();
+						
+//		StringBuilder sb = new StringBuilder("\n");
 //		sb.append("*------>>  ").append(filmTitle).append("  <<------*");
 //		sb.append("\n\nStarring:\n\n");
 //		for (Actor actor : actorsInFilm) {
@@ -199,8 +198,7 @@ public class Film {
 //		sb.append(filmDescription);
 //		sb.append("\n-----------------\n");
 //		sb.append("Language: ").append(filmLanguage);		
-//		sb.append("\n-----------------\n");
-//		sb.append("Special Features: ").append(filmFeatures);
+//		
 //		return sb.toString();
 	}	
 
