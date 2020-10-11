@@ -57,13 +57,13 @@ public class FilmQueryApp {
 				break;
 				
 			case "0":
-				System.out.println("\nThere's No Place Like Home...");
-				System.out.println("Goodbye!");
+				System.out.println("\nHere's Looking at You, Kid.");
 				keepGoing = false;
 				break;
 				
 			default:
 				System.out.println("\nInvalid Entry\n");
+				System.out.println("(I'm Sorry, Dave. I'm Afraid I Can't Do That.)");
 				break;
 			}
 		}

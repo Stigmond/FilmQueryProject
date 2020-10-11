@@ -1,3 +1,5 @@
+// THIS CLASS WAS CREATED PRIMARILY TO EXPERIMENT WITH STATIC METHODS AND TO REDUCE SOME CLUTTER FROM THE MAIN APP
+
 package com.skilldistillery.filmquery.app;
 
 import com.skilldistillery.filmquery.entities.Actor;
@@ -9,7 +11,6 @@ public class FilmDataDisplayer {
 	FilmDataDisplayer() {
 	
 	}
-	
 	public static void showFilmInfo(Film film) {
 		
 		StringBuilder sb = new StringBuilder("\n");
